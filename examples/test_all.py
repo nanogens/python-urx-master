@@ -1,5 +1,5 @@
 """
-Testing script that runs many of the urx methods, while attempting to keep robot pose around its starting pose
+Testing script that runs many of the urx methods, while attempting to keep robot pose around its starting pose 
 """
 
 from math import pi
