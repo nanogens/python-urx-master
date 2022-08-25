@@ -11,7 +11,7 @@ if __name__ == "__main__":
     try:
         l = 0.05
         v = 0.05
-        a = 0.3
+        a = 0.13
         j = rob.getj()
         print("Initial joint configuration is ", j)
         t = rob.get_pose()
