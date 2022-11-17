@@ -1,0 +1,83 @@
+i = 0
+while i < 1:
+    print("Position: Home")
+    rob.movej((0.0, 0, 0, 0, 0, 0), acc=a, vel=v)
+
+    print("stop robot")
+    rob.stopj()
+    time.sleep(1)
+
+    pose = rob.getl()
+    print("robot tcp is at: ", pose)
+
+    # ----------------------------------------------------------
+
+    print("Position: Home")
+    # base rotation, rotational lift, elblow lift, wrist lift, finger rotation, ring rotation
+    # 1.0 CCW      , -1.0  lift     ,-1.0 lift,   -1.0 lift  , -1.0 rotation  , -1.0 rotation
+    rob.movej((6.25, 0, 0, 0, 0, 0), acc=a, vel=v)
+
+    print("stop robot")
+    rob.stopj()
+    time.sleep(1)
+
+    pose = rob.getl()
+    print("robot tcp is at: ", pose)
+
+    # ----------------------------------------------------------
+
+    print("Position: Home")
+    # base rotation, rotational lift, elblow lift, wrist lift, finger rotation, ring rotation
+    # 1.0 CCW      , -1.0  lift     ,-1.0 lift,   -1.0 lift  , -1.0 rotation  , -1.0 rotation
+    rob.movej((6.3, -3.15, 0, 0, 0, 0), acc=a, vel=v)
+
+    print("stop robot")
+    rob.stopj()
+    time.sleep(1)
+
+    pose = rob.getl()
+    print("robot tcp is at: ", pose)
+
+    # ----------------------------------------------------------
+
+
+
+    # ----------------------------------------------------------
+
+    # **********************************************************
+
+    # ----------------------------------------------------------
+
+
+    # ----------------------------------------------------------
+
+    print("Position: Home")
+    # base rotation, rotational lift, elblow lift, wrist lift, finger rotation, ring rotation
+    # 1.0 CCW      , -1.0  lift     ,-1.0 lift,   -1.0 lift  , -1.0 rotation  , -1.0 rotation
+    rob.movej((6.3, 0.0, 0.0, 0.0, 0.0, 0.0), acc=a, vel=v)
+
+    print("stop robot")
+    rob.stopj()
+    time.sleep(1)
+
+    pose = rob.getl()
+    print("robot tcp is at: ", pose)
+
+    # ----------------------------------------------------------
+
+    print("Position: Home")
+    # base rotation, rotational lift, elblow lift, wrist lift, finger rotation, ring rotation
+    # 1.0 CCW      , -1.0  lift     ,-1.0 lift,   -1.0 lift  , -1.0 rotation  , -1.0 rotation
+    rob.movej((0.0, 0.0, 0.0, 0.0, 0.0, 0.0), acc=a, vel=v)
+
+    print("stop robot")
+    rob.stopj()
+    time.sleep(1)
+
+    pose = rob.getl()
+    print("robot tcp is at: ", pose)
+
+    # ----------------------------------------------------------
+
+    print(i)
+    i += 1
