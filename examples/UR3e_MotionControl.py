@@ -23,4 +23,4 @@ class UR3e_MotionControl:
         self.rob.movej(self.joints, self.acc, self.vel, self.wait, self.relative, self.threshold)
 
         rob.stopj()
-        time.sleep(1)
+        time.sleep(2)
