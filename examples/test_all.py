@@ -36,6 +36,7 @@ async def grippermove(pos=50,speed=10,force=20):
     gripper = Gripper("192.168.1.10")  # actual ip of the ur arm
     await gripper.connect()
     await gripper.move(pos, speed, force)
+    time.sleep(2)Ashish
     await gripper.disconnect()
 
 def wait():
@@ -272,17 +273,17 @@ if __name__ == "__main__":
                         if(r == 0): # home
                             asyncio.run(run())  # calibrate the gripper
                         if(r == 1): # point above object source
-                            time.sleep(2)
+                            time.sleep(1)
                             asyncio.run(grippermove(4, 5, 10)) # open gripper
                             time.sleep(2)
                         elif(r == 2): # object source
-                            time.sleep(2)
+                            time.sleep(1)
                             asyncio.run(grippermove(143, 5, 10)) # close gripper
                             time.sleep(2)
                         elif(r == 5): # object dest
-                            time.sleep(2)
+                            time.sleep(1)
                             asyncio.run(grippermove(4, 5, 10))
-                            time.sleep(2)
+                            time.sleep(1)
                     print('\nVisited all waypoints!')
 
             print("stop robot")
