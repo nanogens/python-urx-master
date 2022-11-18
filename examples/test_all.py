@@ -36,7 +36,7 @@ async def grippermove(pos=50,speed=10,force=20):
     gripper = Gripper("192.168.1.10")  # actual ip of the ur arm
     await gripper.connect()
     await gripper.move(pos, speed, force)
-    time.sleep(2)Ashish
+    time.sleep(2)
     await gripper.disconnect()
 
 def wait():
@@ -100,7 +100,9 @@ if __name__ == "__main__":
         jointzz = []
         jointzz = [jointz, jointz, jointz, jointz, jointz, jointz, jointz, jointz]
 
-        jointzz[0] = (0, 0, 0, 0, 0, 0)
+        # initialize all coordinates in waypoints of array to zero
+        for setzero in range(len(jointzz)):
+            jointzz[setzero] = (0, 0, 0, 0, 0, 0)
 
         jointzz[1] = (-2.0430763403521937, -0.8392384809306641, 0.8563421408282679, -1.6201797924437464, -1.5386770407306116, -0.45425635973085576)
         jointzz[2] = (-2.0432561079608362, -0.5984586042216797, 1.2107704321490687, -2.2185684643187464, -1.5391314665423792, -0.4559586683856409)
@@ -119,8 +121,6 @@ if __name__ == "__main__":
                 # Return to Home
                 if keyboard.is_pressed('h'):
                     time.sleep(0.2)
-                    index = 0 # how many steps we take in the azimuth step example
-                    wp_index = 0 # delete all waypoints
                     motion.axisMove(rob, (0, 0, 0, 0, 0, 0), acc=a, vel=v)
 
                 # Erase all Waypoints
@@ -128,8 +128,9 @@ if __name__ == "__main__":
                     time.sleep(0.2)
                     print('\nErasing all waypoints...')
                     wp_index = 0 # delete all waypoints
-                    for wipe in range(5):
-                        jointzz[wipe] = 0
+                    # erase all waypoints -- initialize all coordinates in waypoints of array to zero
+                    for setzero in range(len(jointzz)):
+                        jointzz[setzero] = (0, 0, 0, 0, 0, 0)
 
                 # Get and show the current joint positions
                 elif keyboard.is_pressed('m'):  # if key 'm' is pressed
@@ -142,7 +143,6 @@ if __name__ == "__main__":
                 elif keyboard.is_pressed('q'):  # if key 'q' is pressed
                     time.sleep(0.2)
                     print('You Pressed the "q" key!')
-                    index = index + 1
                     motion.axisMove(rob, (step * index, 0, 0, 0, 0, 0), acc=a, vel=v)
                     #if index == 5:
                         #break  # finishing the loop
@@ -169,9 +169,9 @@ if __name__ == "__main__":
                 # Save the waypoint
                 elif keyboard.is_pressed('w'):
                     time.sleep(0.2)
-                    if wp_index < 5:
+                    if wp_index < len(jointzz):
                         jointzz[wp_index] = rob.getj()
-                        for x in range(5):
+                        for x in range(len(jointzz)):
                             txt = "\nWaypoint " + str(x) + " : "
                             print(txt)
                             print(jointzz[x])
@@ -182,7 +182,7 @@ if __name__ == "__main__":
                 # Save the waypoint
                 elif keyboard.is_pressed('a'):
                     time.sleep(0.2)
-                    for f in range(5):
+                    for f in range(len(jointzz)):
                         txt2 = "\nWaypoint Readoout " + str(f) + " : "
                         print(txt2)
                         print(jointzz[f])
@@ -266,24 +266,29 @@ if __name__ == "__main__":
                 # Cycle through waypoints
                 elif keyboard.is_pressed('u'):
                     time.sleep(0.2)
-                    for r in range(8):
+                    for r in range(len(jointzz)):
                         print('\nMoving to Waypoint #', r)
                         motion.axisMove(rob, jointzz[r], acc=a, vel=v)
 
                         if(r == 0): # home
                             asyncio.run(run())  # calibrate the gripper
                         if(r == 1): # point above object source
-                            time.sleep(1)
+                            time.sleep(0.5)
                             asyncio.run(grippermove(4, 5, 10)) # open gripper
-                            time.sleep(2)
                         elif(r == 2): # object source
-                            time.sleep(1)
+                            time.sleep(0.5)
                             asyncio.run(grippermove(143, 5, 10)) # close gripper
-                            time.sleep(2)
                         elif(r == 5): # object dest
-                            time.sleep(1)
+                            time.sleep(0.5)
                             asyncio.run(grippermove(4, 5, 10))
-                            time.sleep(1)
+                    print('\nVisited all waypoints!')
+
+                # Cycle through waypoints
+                elif keyboard.is_pressed('f'):
+                    time.sleep(0.2)
+                    for r in range(len(jointzz)):
+                        print('\nMoving to Waypoint #', r)
+                        motion.axisMove(rob, jointzz[r], acc=a, vel=v)
                     print('\nVisited all waypoints!')
 
             print("stop robot")
