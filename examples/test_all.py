@@ -144,6 +144,7 @@ if __name__ == "__main__":
                     time.sleep(0.2)
                     print('You Pressed the "q" key!')
                     motion.axisMove(rob, (step * index, 0, 0, 0, 0, 0), acc=a, vel=v)
+                    index = index + 1;
                     #if index == 5:
                         #break  # finishing the loop
 
